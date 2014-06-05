@@ -7,16 +7,18 @@ import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 
 public class AWSResources {
 	
-	public static final String DDB_TABLE_NAME = "customer";
+	public static final String DDB_TABLE_NAME = "ProductCatalog";
 	public static final Region REGION = Region.getRegion(Regions.AP_SOUTHEAST_1);
 	public static final AWSCredentialsProvider CREDENTIAL_PROVIDER = new AWSCredentialsProviderChain(
 																	new InstanceProfileCredentialsProvider(),
 																	new ProfileCredentialsProvider("DevOnAWS-QwikLab"));
 	public static final AmazonDynamoDBClient DYNAMODB = new AmazonDynamoDBClient(CREDENTIAL_PROVIDER);
+	public static final DynamoDBMapper MAPPER = new DynamoDBMapper(AWSResources.DYNAMODB);
 	
 	private static String cID;
 	private static String cName;
